@@ -1,6 +1,6 @@
 {
-  "name": "inpainter",
-  "version": "0.1.0",
+  "name": "instruct-pix2pix-demo",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

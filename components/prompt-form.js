@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const samplePrompts = ["add fireworks to the sky"];
+// const samplePrompts = ["add fireworks to the sky"];
 import sample from "lodash/sample";
 
 export default function PromptForm(props) {
-  const [prompt] = useState(sample(samplePrompts));
+  // const [prompt] = useState(sample(samplePrompts));
   const [image, setImage] = useState(null);
 
   return (
@@ -15,9 +15,9 @@ export default function PromptForm(props) {
       <div className="flex max-w-[512px]">
         <input
           type="text"
-          defaultValue={prompt}
+          // defaultValue={prompt}
           name="prompt"
-          placeholder="Enter a prompt..."
+          placeholder="Add an instruction to change the image..."
           className="block w-full flex-grow rounded-l-md"
         />
 
@@ -25,7 +25,7 @@ export default function PromptForm(props) {
           className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none"
           type="submit"
         >
-          Generate
+          Instruct
         </button>
       </div>
     </form>

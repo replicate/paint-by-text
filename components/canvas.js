@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { ReactSketchCanvas } from "react-sketch-canvas";
 import Spinner from "components/spinner";
 
 export default class Canvas extends React.Component {
@@ -51,11 +50,13 @@ export default class Canvas extends React.Component {
 
         {/* USER UPLOADED IMAGE */}
         {this.props.userUploadedImage && (
-          <Image
-            src={URL.createObjectURL(this.props.userUploadedImage)}
-            alt="preview image"
-            layout="fill"
-          />
+          <div className="object-contain">
+            <Image
+              src={URL.createObjectURL(this.props.userUploadedImage)}
+              alt="preview image"
+              layout="fill"
+            />
+          </div>
         )}
 
         {/* SPINNER */}
@@ -72,22 +73,6 @@ export default class Canvas extends React.Component {
             </div>
           </div>
         )}
-
-        {(predictions.length > 0 || this.props.userUploadedImage) &&
-          !predicting && (
-            <div
-              className="absolute top-0 left-0 w-full h-full"
-              style={{ zIndex: predictions.length + 100 }}
-            >
-              <ReactSketchCanvas
-                ref={this.canvas}
-                strokeWidth={80}
-                strokeColor="black"
-                canvasColor="transparent"
-                onChange={this.onChange}
-              />
-            </div>
-          )}
       </div>
     );
   }

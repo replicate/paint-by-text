@@ -20,9 +20,18 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let image;
+
+    try {
+      image = await readAsDataURL(userUploadedImage);
+    } catch (error) {
+      setError(error.message);
+      return;
+    }
+
     const body = {
       prompt: e.target.prompt.value,
-      image: await readAsDataURL(userUploadedImage),
+      image,
     };
 
     const response = await fetch("/api/predictions", {
@@ -134,6 +143,10 @@ export default function Home() {
 }
 
 function readAsDataURL(file) {
+  if (file.size > 10 * 1024 * 1024) {
+    throw new Error("File must no larger than 10 MB in size");
+  }
+
   return new Promise((resolve, reject) => {
     const fr = new FileReader();
     fr.onerror = reject;

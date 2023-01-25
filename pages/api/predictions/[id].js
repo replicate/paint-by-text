@@ -1,7 +1,5 @@
 const API_HOST = process.env.REPLICATE_API_HOST || "https://api.replicate.com";
 
-console.log({ API_HOST });
-
 export default async function handler(req, res) {
   const response = await fetch(`${API_HOST}/v1/predictions/${req.query.id}`, {
     headers: {

@@ -88,8 +88,6 @@ export default function Home() {
       </Head>
 
       <main className="container mx-auto p-5">
-        {error && <div>{error}</div>}
-
         <div className="border-hairline max-w-[512px] mx-auto relative">
           <Dropzone
             onImageDropped={setUserUploadedImage}
@@ -110,6 +108,8 @@ export default function Home() {
 
         <div className="max-w-[512px] mx-auto">
           <PromptForm onSubmit={handleSubmit} disabled={wasSubmitted} />
+
+          {error && <p className="bold text-red-500 pb-5">{error}</p>}
 
           <div className="text-center">
             {((predictions.length > 0 &&
@@ -148,7 +148,9 @@ export default function Home() {
 
 function readAsDataURL(file) {
   if (file.size > 10 * 1024 * 1024) {
-    throw new Error("File must no larger than 10 MB in size");
+    throw new Error(
+      "File must not be larger than 10 MB in size. Please resize it and try again."
+    );
   }
 
   return new Promise((resolve, reject) => {

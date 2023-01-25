@@ -33,3 +33,11 @@ export default async function handler(req, res) {
   res.statusCode = 201;
   res.end(JSON.stringify(prediction));
 }
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+};

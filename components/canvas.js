@@ -42,6 +42,7 @@ export default class Canvas extends React.Component {
                 alt={"prediction" + index}
                 key={"prediction" + index}
                 layout="fill"
+                objectFit="contain"
                 className="absolute animate-in fade-in"
                 style={{ zIndex: index }}
                 src={prediction.lastImage}
@@ -50,13 +51,12 @@ export default class Canvas extends React.Component {
 
         {/* USER UPLOADED IMAGE */}
         {this.props.userUploadedImage && (
-          <div className="object-contain">
-            <Image
-              src={URL.createObjectURL(this.props.userUploadedImage)}
-              alt="preview image"
-              layout="fill"
-            />
-          </div>
+          <Image
+            src={URL.createObjectURL(this.props.userUploadedImage)}
+            alt="preview image"
+            layout="fill"
+            objectFit="contain"
+          ></Image>
         )}
 
         {/* SPINNER */}

@@ -1,32 +1,25 @@
-import { useState } from "react";
-
-// const samplePrompts = ["add fireworks to the sky"];
-import sample from "lodash/sample";
-
-export default function PromptForm(props) {
-  // const [prompt] = useState(sample(samplePrompts));
-  const [image, setImage] = useState(null);
-
+export default function PromptForm({ onSubmit, disabled = false }) {
   return (
-    <form
-      onSubmit={props.onSubmit}
-      className="py-5 animate-in fade-in duration-700"
-    >
+    <form onSubmit={onSubmit} className="py-5 animate-in fade-in duration-700">
       <div className="flex max-w-[512px]">
         <input
           type="text"
-          // defaultValue={prompt}
           name="prompt"
           placeholder="Add an instruction to change the image..."
-          className="block w-full flex-grow rounded-l-md"
+          className={`block w-full flex-grow${
+            disabled ? " rounded-md" : " rounded-l-md"
+          }`}
+          disabled={disabled}
         />
 
-        <button
-          className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none"
-          type="submit"
-        >
-          Instruct
-        </button>
+        {disabled || (
+          <button
+            className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none"
+            type="submit"
+          >
+            Instruct
+          </button>
+        )}
       </div>
     </form>
   );

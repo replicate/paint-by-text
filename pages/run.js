@@ -16,9 +16,12 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [maskImage, setMaskImage] = useState(null);
   const [userUploadedImage, setUserUploadedImage] = useState(null);
+  const [wasSubmitted, setWasSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setWasSubmitted(true);
 
     let image;
 
@@ -74,6 +77,7 @@ export default function Home() {
     setError(null);
     setMaskImage(null);
     setUserUploadedImage(null);
+    setWasSubmitted(false);
   };
 
   return (
@@ -105,7 +109,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-[512px] mx-auto">
-          <PromptForm onSubmit={handleSubmit} />
+          <PromptForm onSubmit={handleSubmit} disabled={wasSubmitted} />
 
           <div className="text-center">
             {((predictions.length > 0 &&

@@ -129,7 +129,7 @@ export default function Home() {
                 Run with an API
               </a>
             </Link>
-            <Link href="https://github.com/timothybrooks/instruct-pix2pix">
+            <Link href="https://github.com/replicate/instruct-pix2pix-demo">
               <a
                 className="lil-button"
                 target="_blank"

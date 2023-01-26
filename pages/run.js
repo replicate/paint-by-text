@@ -88,7 +88,7 @@ export default function Home() {
       </Head>
 
       <main className="container mx-auto p-5">
-        <div className="border-hairline max-w-[512px] mx-auto relative">
+        <div className="border-hairline mx-auto relative">
           <Dropzone
             onImageDropped={setUserUploadedImage}
             predictions={predictions}

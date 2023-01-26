@@ -1,5 +1,3 @@
-const resizeImage = require("lib/resize-image");
-
 const API_HOST = process.env.REPLICATE_API_HOST || "https://api.replicate.com";
 
 export default async function handler(req, res) {
@@ -8,10 +6,6 @@ export default async function handler(req, res) {
     (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
     {}
   );
-
-  if (req.body.image) {
-    req.body.image = await resizeImage(req.body.image);
-  }
 
   const body = JSON.stringify({
     // https://replicate.com/cjwbw/instruct-pix2pix-diffuser/versions

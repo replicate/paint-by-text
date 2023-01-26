@@ -33,7 +33,7 @@ export default function Home() {
     let image;
 
     try {
-      image = await readAsDataURL(userUploadedImage);
+      image = await prepareImageFileForUpload(userUploadedImage);
     } catch (error) {
       setError(error.message);
       return;
@@ -163,18 +163,47 @@ export default function Home() {
   );
 }
 
-function readAsDataURL(file) {
-  if (file.size > 10 * 1024 * 1024) {
-    throw new Error(
-      "File must not be larger than 10 MB in size. Please resize it and try again."
-    );
-  }
-
+function prepareImageFileForUpload(file) {
   return new Promise((resolve, reject) => {
     const fr = new FileReader();
     fr.onerror = reject;
-    fr.onload = () => {
-      resolve(fr.result);
+    fr.onload = (e) => {
+      const img = document.createElement("img");
+      img.onload = function () {
+        const MAX_WIDTH = 512;
+        const MAX_HEIGHT = 512;
+
+        let width = img.width;
+        let height = img.height;
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            width = MAX_WIDTH;
+            height = height * (MAX_WIDTH / width);
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width = width * (MAX_HEIGHT / height);
+            height = MAX_HEIGHT;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.msImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const dataURL = canvas.toDataURL(file.type);
+
+        resolve(dataURL);
+      };
+      img.src = e.target.result;
     };
     fr.readAsDataURL(file);
   });

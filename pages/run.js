@@ -21,6 +21,13 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setError(null);
+
+    if (!userUploadedImage) {
+      setError("Please upload an image and try again.");
+      return;
+    }
+
     setWasSubmitted(true);
 
     let image;

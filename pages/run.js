@@ -139,6 +139,16 @@ export default function Home() {
                 Fork on GitHub
               </a>
             </Link>
+            <Link href="https://replicate.com/cjwbw/instruct-pix2pix/examples">
+              <a
+                className="lil-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <CodeIcon className="icon" />
+                View more examples
+              </a>
+            </Link>
           </div>
         </div>
       </main>

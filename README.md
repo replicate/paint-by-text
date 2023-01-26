@@ -1,8 +1,14 @@
 # 🪄 InstructPix2Px Demo
 
-A web GUI for running [InstructPix2Pix](https://replicate.com/stability-ai/instructpix2pix) using Replicate's API.
+A web GUI for running InstructPix2Pix using Replicate's API.
 
 Try it out at [instruct-pix2pix.vercel.app](https://instruct-pix2pix.vercel.app)
+
+See also:
+
+- Replicate model: https://replicate.com/cjwbw/instruct-pix2pix-diffuser
+- Owner's project page: https://www.timothybrooks.com/instruct-pix2pix
+- Owner's model repository: https://github.com/timothybrooks/instruct-pix2pix
 
 ## How it works
 

@@ -18,7 +18,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.2",
-    "react-sketch-canvas": "^6.2.0"
+    "react-sketch-canvas": "^6.2.0",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",

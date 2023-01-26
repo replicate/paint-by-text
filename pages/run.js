@@ -1,15 +1,16 @@
-import { useState } from "react";
+import Canvas from "components/canvas";
+import Download from "components/download";
+import Dropzone from "components/dropzone";
+import PromptForm from "components/prompt-form";
+import useInterval from "hooks/use-interval";
+import {
+  Code as CodeIcon,
+  Rocket as RocketIcon,
+  XCircle as StartOverIcon,
+} from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
-import Canvas from "components/canvas";
-import PromptForm from "components/prompt-form";
-import Dropzone from "components/dropzone";
-import Download from "components/download";
-import { XCircle as StartOverIcon } from "lucide-react";
-import { Code as CodeIcon } from "lucide-react";
-import { Rocket as RocketIcon } from "lucide-react";
-
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+import { useState } from "react";
 
 export default function Home() {
   const [predictions, setPredictions] = useState([]);
@@ -57,26 +58,36 @@ export default function Home() {
       setError(prediction.detail);
       return;
     }
-    setPredictions(predictions.concat([prediction]));
 
-    while (
-      prediction.status !== "succeeded" &&
-      prediction.status !== "failed"
+    setPredictions(predictions.concat([prediction]));
+  };
+
+  useInterval(async () => {
+    const lastPrediction = predictions[predictions.length - 1];
+
+    if (!lastPrediction) {
+      return;
+    }
+
+    if (
+      lastPrediction.status !== "succeeded" &&
+      lastPrediction.status !== "failed"
     ) {
-      await sleep(1000);
-      const response = await fetch("/api/predictions/" + prediction.id);
-      prediction = await response.json();
+      const response = await fetch("/api/predictions/" + lastPrediction.id);
+      const nextPrediction = await response.json();
+
       if (response.status !== 200) {
-        setError(prediction.detail);
+        setError(nextPrediction.detail);
         return;
       }
-      setPredictions(predictions.concat([prediction]));
 
-      if (prediction.status === "succeeded") {
+      setPredictions(predictions.concat([nextPrediction]));
+
+      if (nextPrediction.status === "succeeded") {
         setUserUploadedImage(null);
       }
     }
-  };
+  }, 1000);
 
   const startOver = async (e) => {
     e.preventDefault();

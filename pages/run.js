@@ -126,7 +126,7 @@ export default function Home() {
             <Link href="https://replicate.com/cjwbw/instruct-pix2pix-diffuser/api">
               <a target="_blank" className="lil-button">
                 <RocketIcon className="icon" />
-                Run with an API
+                Powered by Replicate
               </a>
             </Link>
             <Link href="https://github.com/replicate/instruct-pix2pix-demo">

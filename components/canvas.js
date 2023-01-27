@@ -9,16 +9,6 @@ export default class Canvas extends React.Component {
     this.canvas = React.createRef();
   }
 
-  onChange = async () => {
-    const paths = await this.canvas.current.exportPaths();
-
-    // only respond if there are paths to draw (don't want to send a blank canvas)
-    if (paths.length) {
-      const data = await this.canvas.current.exportImage("svg");
-      this.props.onDraw(data);
-    }
-  };
-
   render() {
     const predictions = this.props.predictions.map((prediction) => {
       prediction.lastImage = prediction.output

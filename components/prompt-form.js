@@ -5,7 +5,7 @@ export default function PromptForm({ onSubmit, disabled = false }) {
         <input
           type="text"
           name="prompt"
-          defaultValue={"add fireworks"}
+          defaultValue={"add fireworks to the sky"}
           placeholder="Add an instruction to change the image..."
           className={`block w-full flex-grow${
             disabled ? " rounded-md" : " rounded-l-md"
@@ -18,7 +18,7 @@ export default function PromptForm({ onSubmit, disabled = false }) {
             className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none"
             type="submit"
           >
-            Instruct
+            Go
           </button>
         )}
       </div>

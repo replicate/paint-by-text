@@ -1,5 +1,5 @@
 import Image from "next/future/image";
-import { Fragment, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
 export default function Messages({ events, isProcessing }) {
@@ -16,8 +16,8 @@ export default function Messages({ events, isProcessing }) {
       {events.map((ev, index) => {
         if (ev.image) {
           return (
-            <Fragment key={"image-" + index}>
-              <div className="w-full">
+            <div key={"image-" + index} className="w-full">
+              <div className="mb-2 mr-16 bg-gray-200 p-3 rounded-lg">
                 <Image
                   alt={
                     ev.prompt
@@ -27,25 +27,25 @@ export default function Messages({ events, isProcessing }) {
                   width="512"
                   height="512"
                   priority={true}
-                  className="w-full h-auto mb-4 rounded-lg"
+                  className="w-full h-auto rounded-lg"
                   src={ev.image}
                 />
               </div>
 
               {(isProcessing || index < events.length - 1) && (
                 <div>
-                  <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-4">
+                  <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-8">
                     What should we change?
                   </div>
                 </div>
               )}
-            </Fragment>
+            </div>
           );
         }
 
         if (ev.prompt) {
           return (
-            <div key={"prompt-" + index} className="text-right">
+            <div key={"prompt-" + index} className="text-right ml-16">
               <div className="inline-block bg-blue-600 text-right text-white p-3 rounded-lg mb-8">
                 {ev.prompt}
               </div>
@@ -55,7 +55,7 @@ export default function Messages({ events, isProcessing }) {
       })}
 
       {isProcessing && (
-        <div>
+        <div className="mr-16">
           <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-8">
             <PulseLoader color="#999" size={7} />
           </div>

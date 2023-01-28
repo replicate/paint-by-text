@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Footer({ events, startOver, handleImageDropped }) {
   return (
-    <div className="w-full">
+    <footer className="w-full">
       <div className="text-center">
         <Link href="/about">
           <a className="lil-button">
@@ -56,6 +56,6 @@ export default function Footer({ events, startOver, handleImageDropped }) {
           <a target="_blank">GitHub</a>
         </Link>
       </div>
-    </div>
+    </footer>
   );
 }

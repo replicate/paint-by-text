@@ -18,8 +18,8 @@ export default function PromptForm({ onSubmit, disabled = false, seed }) {
       onSubmit={handleSubmit}
       className="pb-5 animate-in fade-in duration-700"
     >
-      <div>
-        <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-4">
+      <div className="mr-16">
+        <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-8">
           <label htmlFor="prompt-input">What should we change?</label>
         </div>
       </div>

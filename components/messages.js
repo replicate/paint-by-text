@@ -16,9 +16,13 @@ export default function Messages({ events, isProcessing }) {
       {events.map((ev, index) => {
         if (ev.image) {
           return (
-            <div key={"event-" + index} className="w-full">
+            <div key={"image-" + index} className="w-full">
               <Image
-                alt={"event" + index}
+                alt={
+                  ev.prompt
+                    ? `The result of the prompt "${ev.prompt}" on the previous image`
+                    : "The source image"
+                }
                 width="512"
                 height="512"
                 priority={true}
@@ -31,7 +35,7 @@ export default function Messages({ events, isProcessing }) {
 
         if (ev.prompt) {
           return (
-            <div key={"event-" + index} className="text-right">
+            <div key={"prompt-" + index} className="text-right">
               <div className="inline-block bg-blue-600 text-right text-white p-3 rounded-lg mb-8">
                 {ev.prompt}
               </div>

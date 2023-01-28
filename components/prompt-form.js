@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function PromptForm({ onSubmit, disabled = false, seed }) {
   const [prompt, setPrompt] = useState(seed.prompt);

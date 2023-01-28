@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
 import { Upload as UploadIcon } from "lucide-react";
+import { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 
 export default function Dropzone(props) {
   const onImageDropped = props.onImageDropped;

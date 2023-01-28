@@ -1,9 +1,10 @@
-import React from "react";
-import { Download as DownloadIcon } from "lucide-react";
 import Dropzone from "components/dropzone";
-import { XCircle as StartOverIcon } from "lucide-react";
-import { Code as CodeIcon } from "lucide-react";
-import { Info as InfoIcon } from "lucide-react";
+import {
+  Code as CodeIcon,
+  Download as DownloadIcon,
+  Info as InfoIcon,
+  XCircle as StartOverIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function Footer({ events, startOver, handleImageDropped }) {

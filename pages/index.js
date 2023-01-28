@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import Head from "next/head";
 import Messages from "components/messages";
 import PromptForm from "components/prompt-form";
+import Head from "next/head";
+import { useEffect, useState } from "react";
 
 import Footer from "components/footer";
 

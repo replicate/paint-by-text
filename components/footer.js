@@ -9,7 +9,6 @@ import Link from "next/link";
 export default function Footer({ events, startOver, handleImageDropped }) {
   return (
     <div className="w-full">
-      -{" "}
       <div className="text-center">
         <Link href="/about">
           <a className="lil-button">

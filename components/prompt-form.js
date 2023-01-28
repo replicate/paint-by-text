@@ -16,15 +16,21 @@ export default function PromptForm({ onSubmit, disabled = false, seed }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="py-5 animate-in fade-in duration-700"
+      className="pb-5 animate-in fade-in duration-700"
     >
+      <div>
+        <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-4">
+          <label htmlFor="prompt-input">What should we change?</label>
+        </div>
+      </div>
       <div className="flex">
         <input
+          id="prompt-input"
           type="text"
           name="prompt"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Type another message to make more changes..."
+          placeholder="Your message..."
           className={`block w-full flex-grow${
             disabled ? " rounded-md" : " rounded-l-md"
           }`}

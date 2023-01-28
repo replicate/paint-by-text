@@ -1,5 +1,5 @@
 import Image from "next/future/image";
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
 export default function Messages({ events, isProcessing }) {
@@ -12,24 +12,34 @@ export default function Messages({ events, isProcessing }) {
   });
 
   return (
-    <section className="canvas w-full">
+    <section className="w-full">
       {events.map((ev, index) => {
         if (ev.image) {
           return (
-            <div key={"image-" + index} className="w-full">
-              <Image
-                alt={
-                  ev.prompt
-                    ? `The result of the prompt "${ev.prompt}" on the previous image`
-                    : "The source image"
-                }
-                width="512"
-                height="512"
-                priority={true}
-                className="w-full h-auto mb-10 rounded-lg"
-                src={ev.image}
-              />
-            </div>
+            <Fragment key={"image-" + index}>
+              <div className="w-full">
+                <Image
+                  alt={
+                    ev.prompt
+                      ? `The result of the prompt "${ev.prompt}" on the previous image`
+                      : "The source image"
+                  }
+                  width="512"
+                  height="512"
+                  priority={true}
+                  className="w-full h-auto mb-4 rounded-lg"
+                  src={ev.image}
+                />
+              </div>
+
+              {(isProcessing || index < events.length - 1) && (
+                <div>
+                  <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-4">
+                    What should we change?
+                  </div>
+                </div>
+              )}
+            </Fragment>
           );
         }
 

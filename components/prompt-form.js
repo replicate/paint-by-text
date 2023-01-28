@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Message from "./message";
 
 export default function PromptForm({ onSubmit, disabled = false, seed }) {
   const [prompt, setPrompt] = useState(seed.prompt);
@@ -18,12 +19,11 @@ export default function PromptForm({ onSubmit, disabled = false, seed }) {
       onSubmit={handleSubmit}
       className="pb-5 animate-in fade-in duration-700"
     >
-      <div className="mr-16">
-        <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-8">
-          <label htmlFor="prompt-input">What should we change?</label>
-        </div>
-      </div>
-      <div className="flex">
+      <Message sender="replicate" isSameSender>
+        <label htmlFor="prompt-input">What should we change?</label>
+      </Message>
+
+      <div className="flex mt-8">
         <input
           id="prompt-input"
           type="text"

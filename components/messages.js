@@ -1,6 +1,7 @@
 import Image from "next/future/image";
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
+import Message from "./message";
 
 export default function Messages({ events, isProcessing }) {
   const messagesEndRef = useRef(null);
@@ -16,8 +17,8 @@ export default function Messages({ events, isProcessing }) {
       {events.map((ev, index) => {
         if (ev.image) {
           return (
-            <div key={"image-" + index} className="w-full">
-              <div className="mb-2 mr-16 bg-gray-200 p-3 rounded-lg">
+            <Fragment key={"image-" + index}>
+              <Message sender="replicate" shouldFillWidth>
                 <Image
                   alt={
                     ev.prompt
@@ -30,36 +31,30 @@ export default function Messages({ events, isProcessing }) {
                   className="w-full h-auto rounded-lg"
                   src={ev.image}
                 />
-              </div>
+              </Message>
 
               {(isProcessing || index < events.length - 1) && (
-                <div>
-                  <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-8">
-                    What should we change?
-                  </div>
-                </div>
+                <Message sender="replicate" isSameSender>
+                  What should we change?
+                </Message>
               )}
-            </div>
+            </Fragment>
           );
         }
 
         if (ev.prompt) {
           return (
-            <div key={"prompt-" + index} className="text-right ml-16">
-              <div className="inline-block bg-blue-600 text-right text-white p-3 rounded-lg mb-8">
-                {ev.prompt}
-              </div>
-            </div>
+            <Message key={"prompt-" + index} sender="user">
+              {ev.prompt}
+            </Message>
           );
         }
       })}
 
       {isProcessing && (
-        <div className="mr-16">
-          <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-8">
-            <PulseLoader color="#999" size={7} />
-          </div>
-        </div>
+        <Message sender="replicate">
+          <PulseLoader color="#999" size={7} />
+        </Message>
       )}
 
       <div ref={messagesEndRef} />

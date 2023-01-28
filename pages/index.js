@@ -52,8 +52,6 @@ export default function Home() {
       image: lastImage,
     };
 
-    // console.log("submitting", { body });
-
     const response = await fetch("/api/predictions", {
       method: "POST",
       headers: {
@@ -82,7 +80,6 @@ export default function Home() {
 
       // just for bookkeeping
       setPredictions(predictions.concat([prediction]));
-      // console.log(predictions);
 
       if (prediction.status === "succeeded") {
         setEvents(

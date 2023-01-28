@@ -29,12 +29,12 @@ export default function Footer({ events, startOver, handleImageDropped }) {
           </Link>
         )}
 
-        {/* <Link href="https://github.com/replicate/instruct-pix2pix-demo">
+        <Link href="https://github.com/replicate/instruct-pix2pix-demo">
           <a className="lil-button" target="_blank" rel="noopener noreferrer">
             <CodeIcon className="icon" />
-            Fork on GitHub
+            Fork repo
           </a>
-        </Link> */}
+        </Link>
       </div>
       <div className="text-center lil-text mt-10 mb-10">
         Powered by{" "}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Canvas from "components/canvas";
@@ -11,38 +11,49 @@ import { Rocket as RocketIcon } from "lucide-react";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+import { getRandomSeed } from "lib/seeds";
+
 export default function Home() {
+  const [events, setEvents] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
-  const [maskImage, setMaskImage] = useState(null);
-  const [userUploadedImage, setUserUploadedImage] = useState(null);
-  const [wasSubmitted, setWasSubmitted] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [seed] = useState(getRandomSeed());
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // set the initial image from a random seed
+  useEffect(() => {
+    setEvents([{ image: seed.image }]);
+  }, []);
 
-    setError(null);
-
-    if (!userUploadedImage) {
-      setError("Please upload an image and try again.");
-      return;
-    }
-
-    setWasSubmitted(true);
-
-    let image;
-
+  const handleImageDropped = async (image) => {
     try {
-      image = await prepareImageFileForUpload(userUploadedImage);
+      image = await prepareImageFileForUpload(image);
     } catch (error) {
       setError(error.message);
       return;
     }
+    setEvents(events.concat([{ image }]));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const prompt = e.target.prompt.value;
+    const lastImage = events.findLast((ev) => ev.image)?.image;
+
+    setError(null);
+    setIsProcessing(true);
+
+    // make a copy so that the second call to setEvents here doesn't blow away the first. Why?
+    const myEvents = [...events, { prompt }];
+    setEvents(myEvents);
 
     const body = {
-      prompt: e.target.prompt.value,
-      image,
+      prompt,
+      image: lastImage,
     };
+
+    // console.log("submitting", { body });
 
     const response = await fetch("/api/predictions", {
       method: "POST",
@@ -57,34 +68,40 @@ export default function Home() {
       setError(prediction.detail);
       return;
     }
-    setPredictions(predictions.concat([prediction]));
 
     while (
       prediction.status !== "succeeded" &&
       prediction.status !== "failed"
     ) {
-      await sleep(1000);
+      await sleep(500);
       const response = await fetch("/api/predictions/" + prediction.id);
       prediction = await response.json();
       if (response.status !== 200) {
         setError(prediction.detail);
         return;
       }
+
+      // just for bookkeeping
       setPredictions(predictions.concat([prediction]));
+      // console.log(predictions);
 
       if (prediction.status === "succeeded") {
-        setUserUploadedImage(null);
+        setEvents(
+          myEvents.concat([
+            { image: prediction.output?.[prediction.output.length - 1] },
+          ])
+        );
       }
     }
+
+    setIsProcessing(false);
   };
 
   const startOver = async (e) => {
     e.preventDefault();
-    setPredictions([]);
+    setEvents([]);
     setError(null);
-    setMaskImage(null);
-    setUserUploadedImage(null);
-    setWasSubmitted(false);
+    setIsProcessing(false);
   };
 
   return (
@@ -94,71 +111,28 @@ export default function Home() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <main className="container max-w-[800px] mx-auto p-5">
+      <main className="container max-w-[700px] mx-auto p-5">
         <h1 className="text-center text-5xl font-bold m-6">
-          🖌️
-          <br />
-          Paint with words.
+          {/* <div className="mb-10">🖌️</div> */}
+          Paint with words
         </h1>
 
-        <div className="mx-auto relative">
-          <Dropzone
-            onImageDropped={setUserUploadedImage}
-            predictions={predictions}
-            userUploadedImage={userUploadedImage}
-          />
-          <div className="relative w-full flex items-stretch">
-            <Canvas
-              predictions={predictions}
-              userUploadedImage={userUploadedImage}
-            />
-          </div>
-        </div>
+        <h1 className="text-center text-xl opacity-60 m-6">
+          Use generative AI to manipulate images with text prompts.
+        </h1>
 
-        <div className="max-w-[512px] mx-auto">
-          <PromptForm onSubmit={handleSubmit} disabled={wasSubmitted} />
+        <Canvas events={events} isProcessing={isProcessing} />
 
+        <PromptForm
+          onSubmit={handleSubmit}
+          disabled={isProcessing}
+          seed={seed}
+        />
+
+        <Dropzone onImageDropped={handleImageDropped} />
+
+        <div className="mx-auto w-full">
           {error && <p className="bold text-red-500 pb-5">{error}</p>}
-
-          <div className="text-center">
-            {((predictions.length > 0 &&
-              predictions[predictions.length - 1].output) ||
-              maskImage ||
-              userUploadedImage) && (
-              <button className="lil-button" onClick={startOver}>
-                <StartOverIcon className="icon" />
-                Start over
-              </button>
-            )}
-
-            <Download predictions={predictions} />
-            <Link href="https://replicate.com/cjwbw/instruct-pix2pix-diffuser/api">
-              <a target="_blank" className="lil-button">
-                <RocketIcon className="icon" />
-                Powered by Replicate
-              </a>
-            </Link>
-            <Link href="https://github.com/replicate/instruct-pix2pix-demo">
-              <a
-                className="lil-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <CodeIcon className="icon" />
-                Fork on GitHub
-              </a>
-            </Link>
-            <Link href="https://replicate.com/cjwbw/instruct-pix2pix/examples">
-              <a
-                className="lil-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <CodeIcon className="icon" />
-                View more examples
-              </a>
-            </Link>
-          </div>
         </div>
       </main>
     </div>

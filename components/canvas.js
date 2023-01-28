@@ -1,65 +1,47 @@
 import React from "react";
-import Image from "next/image";
-import Spinner from "components/spinner";
+import Image from "next/future/image";
+import PulseLoader from "react-spinners/PulseLoader";
 
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
-
-    this.canvas = React.createRef();
   }
 
   render() {
-    const predictions = this.props.predictions.map((prediction) => {
-      prediction.lastImage = prediction.output
-        ? prediction.output[prediction.output.length - 1]
-        : null;
-      return prediction;
-    });
-
-    const predicting = predictions.some((prediction) => !prediction.output);
-    const lastPrediction = predictions[predictions.length - 1];
-
+    // console.log(this.props.events);
     return (
-      <div className="relative w-full aspect-square">
-        {/* PREDICTION IMAGES */}
+      <div className="canvas w-full">
+        {this.props.events.map((ev, index) => {
+          if (ev.image) {
+            return (
+              <div key={"event-" + index} className="w-full">
+                <Image
+                  alt={"event" + index}
+                  width="512"
+                  height="512"
+                  priority={true}
+                  className="w-full h-auto mb-10 rounded-lg"
+                  src={ev.image}
+                />
+              </div>
+            );
+          }
 
-        {!this.props.userUploadedImage &&
-          predictions
-            .filter((prediction) => prediction.output)
-            .map((prediction, index) => (
-              <Image
-                alt={"prediction" + index}
-                key={"prediction" + index}
-                layout="fill"
-                objectFit="contain"
-                className="absolute animate-in fade-in"
-                style={{ zIndex: index }}
-                src={prediction.lastImage}
-              />
-            ))}
+          if (ev.prompt) {
+            return (
+              <div key={"event-" + index} className="text-right">
+                <div className="inline-block bg-blue-600 text-right text-white p-3 rounded-lg mb-8">
+                  {ev.prompt}
+                </div>
+              </div>
+            );
+          }
+        })}
 
-        {/* USER UPLOADED IMAGE */}
-        {this.props.userUploadedImage && (
-          <Image
-            src={URL.createObjectURL(this.props.userUploadedImage)}
-            alt="preview image"
-            layout="fill"
-            objectFit="contain"
-          ></Image>
-        )}
-
-        {/* SPINNER */}
-        {predicting && (
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ zIndex: predictions.length + 100 }}
-          >
-            <div className="p-4 w-40 bg-white text-center rounded-lg animate-in zoom-in">
-              <Spinner />
-              <p className="pt-3 opacity-30 text-center text-sm">
-                {lastPrediction.status}
-              </p>
+        {this.props.isProcessing && (
+          <div>
+            <div className="inline-block text-black bg-gray-200 p-3 rounded-lg mb-8">
+              <PulseLoader color="#999" size={7} />
             </div>
           </div>
         )}

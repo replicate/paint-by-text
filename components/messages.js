@@ -1,9 +1,10 @@
+import { RotateCcw as UndoIcon } from "lucide-react";
 import Image from "next/future/image";
 import { Fragment, useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import Message from "./message";
 
-export default function Messages({ events, isProcessing }) {
+export default function Messages({ events, isProcessing, onUndo }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +32,20 @@ export default function Messages({ events, isProcessing }) {
                   className="w-full h-auto rounded-lg"
                   src={ev.image}
                 />
+
+                {onUndo && index > 0 && index === events.length - 1 && (
+                  <div className="mt-2 text-right">
+                    <button
+                      className="lil-button"
+                      onClick={() => {
+                        onUndo(index);
+                      }}
+                    >
+                      <UndoIcon className="icon" /> Undo and try a different
+                      change
+                    </button>
+                  </div>
+                )}
               </Message>
 
               {(isProcessing || index < events.length - 1) && (

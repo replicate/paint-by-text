@@ -3,7 +3,7 @@ import { Download as DownloadIcon } from "lucide-react";
 import Dropzone from "components/dropzone";
 import { XCircle as StartOverIcon } from "lucide-react";
 import { Code as CodeIcon } from "lucide-react";
-import { Rocket as RocketIcon } from "lucide-react";
+import { Info as InfoIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer({ events, startOver, handleImageDropped }) {
@@ -11,6 +11,13 @@ export default function Footer({ events, startOver, handleImageDropped }) {
     <div className="w-full">
       -{" "}
       <div className="text-center">
+        <Link href="/about">
+          <a className="lil-button">
+            <InfoIcon className="icon" />
+            What is this?
+          </a>
+        </Link>
+
         {events.length > 1 && (
           <button className="lil-button" onClick={startOver}>
             <StartOverIcon className="icon" />

@@ -105,15 +105,14 @@ export default function Home() {
     <div>
       <Head>
         <title>Paint with words</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
       <main className="container max-w-[700px] mx-auto p-5">
         <h1 className="text-center text-5xl font-bold m-6">Paint with words</h1>
 
-        <h1 className="text-center text-xl opacity-60 m-6">
+        <h2 className="text-center text-xl opacity-60 m-6">
           Use generative AI to manipulate images with text prompts.
-        </h1>
+        </h2>
 
         <Messages events={events} isProcessing={isProcessing} />
 

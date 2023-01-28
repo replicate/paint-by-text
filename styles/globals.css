@@ -40,3 +40,15 @@ input {
   width: 1.1em;
   height: 1.1em;
 }
+
+.prose {
+  @apply mt-8;
+  @apply text-lg;
+  @apply text-gray-500;
+  @apply leading-7;
+}
+
+.prose a {
+  @apply text-gray-600;
+  @apply underline;
+}

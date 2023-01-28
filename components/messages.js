@@ -12,7 +12,7 @@ export default function Messages({ events, isProcessing }) {
   });
 
   return (
-    <div className="canvas w-full">
+    <section className="canvas w-full">
       {events.map((ev, index) => {
         if (ev.image) {
           return (
@@ -49,6 +49,6 @@ export default function Messages({ events, isProcessing }) {
       )}
 
       <div ref={messagesEndRef} />
-    </div>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 import Image from "next/future/image";
+import { useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
-import React, { useRef, useEffect } from "react";
 
 export default function Messages({ events, isProcessing }) {
   const messagesEndRef = useRef(null);

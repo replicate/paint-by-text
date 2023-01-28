@@ -46,9 +46,9 @@ export default function About() {
             Replicate
           </Link>
           , which exposes a cloud API for running predictions. This website is
-          built with Next.js and hosted on Vercel, and uses Replicate's API to
-          run the InstructPix2Pix model. The source code is publicly available
-          on{" "}
+          built with Next.js and hosted on Vercel, and uses Replicate&apos;s API
+          to run the InstructPix2Pix model. The source code is publicly
+          available on{" "}
           <Link href="https://github.com/replicate/instruct-pix2pix-demo">
             GitHub
           </Link>

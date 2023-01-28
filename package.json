@@ -6,18 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "speed-up-video": "ffmpeg -i cherries-oranges-bananas.mov -filter:v 'setpts=PTS/3' cherries-oranges-bananas.mp4"
+    "lint": "next lint"
   },
   "dependencies": {
     "lodash": "^4.17.21",
     "lucide-react": "^0.88.0",
     "next": "12.2.5",
-    "pngjs": "^6.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.2",
-    "react-sketch-canvas": "^6.2.0",
     "react-spinners": "^0.13.8"
   },
   "devDependencies": {

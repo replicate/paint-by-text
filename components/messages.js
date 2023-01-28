@@ -2,13 +2,12 @@ import React from "react";
 import Image from "next/future/image";
 import PulseLoader from "react-spinners/PulseLoader";
 
-export default class Canvas extends React.Component {
+export default class Messages extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    // console.log(this.props.events);
     return (
       <div className="canvas w-full">
         {this.props.events.map((ev, index) => {

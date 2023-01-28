@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { Upload as UploadIcon } from "lucide-react";
 
 export default function Dropzone(props) {
   const onImageDropped = props.onImageDropped;
@@ -12,16 +13,16 @@ export default function Dropzone(props) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div
-      className="w-full p-4 text-gray-500 text-sm text-center cursor-pointer select-none"
-      {...getRootProps()}
-    >
+    <div className="lil-button cursor-pointer select-none" {...getRootProps()}>
       <div className="m-auto">
         <input {...getInputProps()} />
         {isDragActive ? (
           <p>Drop the image here ...</p>
         ) : (
-          <p>Tip: You can drag and drop your own images too.</p>
+          <p>
+            <UploadIcon className="icon" />
+            Upload an image
+          </p>
         )}
       </div>
     </div>

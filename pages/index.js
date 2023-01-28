@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
-import Canvas from "components/canvas";
+import Messages from "components/messages";
 import PromptForm from "components/prompt-form";
-import Dropzone from "components/dropzone";
-import Download from "components/download";
-import { XCircle as StartOverIcon } from "lucide-react";
-import { Code as CodeIcon } from "lucide-react";
-import { Rocket as RocketIcon } from "lucide-react";
+
+import Footer from "components/footer";
+
+import prepareImageFileForUpload from "lib/prepare-image-file-for-upload";
+import { getRandomSeed } from "lib/seeds";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-import { getRandomSeed } from "lib/seeds";
 
 export default function Home() {
   const [events, setEvents] = useState([]);
@@ -99,7 +96,7 @@ export default function Home() {
 
   const startOver = async (e) => {
     e.preventDefault();
-    setEvents([]);
+    setEvents(events.slice(0, 1));
     setError(null);
     setIsProcessing(false);
   };
@@ -112,16 +109,13 @@ export default function Home() {
       </Head>
 
       <main className="container max-w-[700px] mx-auto p-5">
-        <h1 className="text-center text-5xl font-bold m-6">
-          {/* <div className="mb-10">🖌️</div> */}
-          Paint with words
-        </h1>
+        <h1 className="text-center text-5xl font-bold m-6">Paint with words</h1>
 
         <h1 className="text-center text-xl opacity-60 m-6">
           Use generative AI to manipulate images with text prompts.
         </h1>
 
-        <Canvas events={events} isProcessing={isProcessing} />
+        <Messages events={events} isProcessing={isProcessing} />
 
         <PromptForm
           onSubmit={handleSubmit}
@@ -129,58 +123,16 @@ export default function Home() {
           seed={seed}
         />
 
-        <Dropzone onImageDropped={handleImageDropped} />
-
         <div className="mx-auto w-full">
           {error && <p className="bold text-red-500 pb-5">{error}</p>}
         </div>
+
+        <Footer
+          events={events}
+          startOver={startOver}
+          handleImageDropped={handleImageDropped}
+        />
       </main>
     </div>
   );
-}
-
-function prepareImageFileForUpload(file) {
-  return new Promise((resolve, reject) => {
-    const fr = new FileReader();
-    fr.onerror = reject;
-    fr.onload = (e) => {
-      const img = document.createElement("img");
-      img.onload = function () {
-        const MAX_WIDTH = 512;
-        const MAX_HEIGHT = 512;
-
-        let width = img.width;
-        let height = img.height;
-        if (width > height) {
-          if (width > MAX_WIDTH) {
-            width = MAX_WIDTH;
-            height = height * (MAX_WIDTH / width);
-          }
-        } else {
-          if (height > MAX_HEIGHT) {
-            width = width * (MAX_HEIGHT / height);
-            height = MAX_HEIGHT;
-          }
-        }
-
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.webkitImageSmoothingEnabled = false;
-        ctx.msImageSmoothingEnabled = false;
-        ctx.imageSmoothingEnabled = false;
-
-        ctx.drawImage(img, 0, 0, width, height);
-
-        const dataURL = canvas.toDataURL(file.type);
-
-        resolve(dataURL);
-      };
-      img.src = e.target.result;
-    };
-    fr.readAsDataURL(file);
-  });
 }

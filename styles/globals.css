@@ -25,6 +25,15 @@ input {
   @apply mx-3;
 }
 
+.lil-text {
+  @apply text-sm;
+  @apply text-gray-400;
+}
+
+.lil-text a {
+  @apply text-gray-600;
+}
+
 .icon {
   @apply inline relative mr-1;
   top: -0.1em;

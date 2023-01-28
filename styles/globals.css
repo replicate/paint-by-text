@@ -26,11 +26,12 @@ input {
 
 .lil-text {
   @apply text-sm;
-  @apply text-gray-400;
+  @apply text-gray-500;
 }
 
 .lil-text a {
-  @apply text-gray-600;
+  @apply text-gray-800;
+  @apply underline;
 }
 
 .icon {

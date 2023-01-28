@@ -1,8 +1,8 @@
-# 🪄 InstructPix2Px Demo
+# 👩‍🎨 Paint with words
 
 A web GUI for running InstructPix2Pix using Replicate's API.
 
-Try it out at [instruct-pix2pix.vercel.app](https://instruct-pix2pix.vercel.app)
+Try it out at [paintwithwords.app](https://paintwithwords.app)
 
 See also:
 

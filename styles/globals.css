@@ -17,7 +17,6 @@ input {
 
 .lil-button {
   @apply inline-block;
-  /* @apply border-hairline; */
   @apply text-sm;
   @apply text-gray-500;
   @apply rounded-md;

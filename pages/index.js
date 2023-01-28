@@ -108,11 +108,14 @@ export default function Home() {
       </Head>
 
       <main className="container max-w-[700px] mx-auto p-5">
-        <h1 className="text-center text-5xl font-bold m-6">Paint with words</h1>
-
-        <h2 className="text-center text-xl opacity-60 m-6">
-          Use generative AI to manipulate images with text prompts.
-        </h2>
+        <hgroup>
+          <h1 className="text-center text-5xl font-bold m-6">
+            Paint with words
+          </h1>
+          <p className="text-center text-xl opacity-60 m-6">
+            Use generative AI to manipulate images with text prompts.
+          </p>
+        </hgroup>
 
         <Messages events={events} isProcessing={isProcessing} />
 

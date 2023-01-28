@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "./message";
 
-export default function PromptForm({ onSubmit, disabled = false, seed }) {
-  const [prompt, setPrompt] = useState(seed.prompt);
+export default function PromptForm({
+  initialPrompt,
+  onSubmit,
+  disabled = false,
+}) {
+  const [prompt, setPrompt] = useState(initialPrompt);
+
+  useEffect(() => {
+    setPrompt(initialPrompt);
+  }, [initialPrompt]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

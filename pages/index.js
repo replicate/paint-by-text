@@ -16,11 +16,12 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [seed] = useState(getRandomSeed());
+  const [initialPrompt, setInitialPrompt] = useState(seed.prompt);
 
   // set the initial image from a random seed
   useEffect(() => {
     setEvents([{ image: seed.image }]);
-  }, []);
+  }, [seed.image]);
 
   const handleImageDropped = async (image) => {
     try {
@@ -40,6 +41,7 @@ export default function Home() {
 
     setError(null);
     setIsProcessing(true);
+    setInitialPrompt("");
 
     // make a copy so that the second call to setEvents here doesn't blow away the first. Why?
     const myEvents = [...events, { prompt }];
@@ -99,6 +101,7 @@ export default function Home() {
     setEvents(events.slice(0, 1));
     setError(null);
     setIsProcessing(false);
+    setInitialPrompt(seed.prompt);
   };
 
   return (
@@ -117,12 +120,21 @@ export default function Home() {
           </p>
         </hgroup>
 
-        <Messages events={events} isProcessing={isProcessing} />
+        <Messages
+          events={events}
+          isProcessing={isProcessing}
+          onUndo={(index) => {
+            setInitialPrompt(events[index - 1].prompt);
+            setEvents(
+              events.slice(0, index - 1).concat(events.slice(index + 1))
+            );
+          }}
+        />
 
         <PromptForm
+          initialPrompt={initialPrompt}
           onSubmit={handleSubmit}
           disabled={isProcessing}
-          seed={seed}
         />
 
         <div className="mx-auto w-full">

@@ -10,7 +10,7 @@ export default function Messages({ events, isProcessing }) {
     if (events.length > 2) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  });
+  }, [events.length]);
 
   return (
     <section className="w-full">

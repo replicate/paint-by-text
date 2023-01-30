@@ -27,7 +27,7 @@ export default function Footer({ events, startOver, handleImageDropped }) {
 
         <Dropzone onImageDropped={handleImageDropped} />
 
-        {events.length > 1 && (
+        {events.length > 2 && (
           <Link href={events.findLast((ev) => ev.image).image}>
             <a className="lil-button" target="_blank" rel="noopener noreferrer">
               <DownloadIcon className="icon" />

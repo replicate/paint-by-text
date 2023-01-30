@@ -50,7 +50,9 @@ export default function Messages({ events, isProcessing, onUndo }) {
 
               {(isProcessing || index < events.length - 1) && (
                 <Message sender="replicate" isSameSender>
-                  What should we change?
+                  {index === 0
+                    ? "What should we change?"
+                    : "What should we change now?"}
                 </Message>
               )}
             </Fragment>

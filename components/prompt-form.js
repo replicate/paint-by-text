@@ -23,10 +23,7 @@ export default function PromptForm({
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="pb-5 animate-in fade-in duration-700"
-    >
+    <form onSubmit={handleSubmit} className="animate-in fade-in duration-700">
       <Message sender="replicate" isSameSender>
         <label htmlFor="prompt-input">What should we change?</label>
       </Message>

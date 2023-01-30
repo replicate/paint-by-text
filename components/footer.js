@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Footer({ events, startOver, handleImageDropped }) {
   return (
-    <footer className="w-full">
+    <footer className="w-full my-8">
       <div className="text-center">
         <Link href="/about">
           <a className="lil-button">
@@ -43,7 +43,7 @@ export default function Footer({ events, startOver, handleImageDropped }) {
           </a>
         </Link>
       </div>
-      <div className="text-center lil-text mt-10 mb-10">
+      <div className="text-center lil-text mt-8">
         Powered by{" "}
         <Link href="https://replicate.com/cjwbw/instruct-pix2pix-diffuser/api">
           <a target="_blank">Replicate</a>

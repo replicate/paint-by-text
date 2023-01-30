@@ -49,7 +49,7 @@ export default function Footer({ events, startOver, handleImageDropped }) {
           <a target="_blank">InstructPix2Pix</a>
         </Link>
         ,{" "}
-        <Link href="https://replicate.com/cjwbw/instruct-pix2pix-diffuser/api">
+        <Link href="https://replicate.com/timothybrooks/instruct-pix2pix/api">
           <a target="_blank">Replicate</a>
         </Link>
         ,{" "}

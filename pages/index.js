@@ -130,6 +130,7 @@ export default function Home() {
 
         <PromptForm
           initialPrompt={initialPrompt}
+          isFirstPrompt={events.length === 1}
           onSubmit={handleSubmit}
           disabled={isProcessing}
         />

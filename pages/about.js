@@ -31,8 +31,7 @@ export default function About() {
           </Link>{" "}
           to generate a large dataset of image editing examples. This model was
           created at the University of California, Berkeley by{" "}
-          <Link href="https://timothybrooks.com/about">Tim Brooks</Link>
-          {", "}
+          <Link href="https://timothybrooks.com/about">Tim Brooks</Link>,{" "}
           <Link href="http://www.holynski.org/">Aleksander Holynski</Link>, and{" "}
           <Link href="https://people.eecs.berkeley.edu/~efros/">
             Alexei A. Efros
@@ -46,9 +45,10 @@ export default function About() {
             Replicate
           </Link>
           , which exposes a cloud API for running predictions. This website is
-          built with Next.js and hosted on Vercel, and uses Replicate&apos;s API
-          to run the InstructPix2Pix model. The source code is publicly
-          available on{" "}
+          built with Next.js and hosted on
+          <Link href="https://vercel.com/templates/ai">Vercel</Link>, and uses
+          Replicate&apos;s API to run the InstructPix2Pix model. The source code
+          is publicly available on{" "}
           <Link href="https://github.com/replicate/instruct-pix2pix-demo">
             GitHub
           </Link>

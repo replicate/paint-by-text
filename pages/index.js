@@ -11,7 +11,7 @@ import { getRandomSeed } from "lib/seeds";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export const appName = "Paint by Text";
-export const appSubtitle = "Use generative AI to modify images with words."
+export const appSubtitle = "Modify images by chatting with a generative AI model."
 
 export default function Home() {
   const [events, setEvents] = useState([]);

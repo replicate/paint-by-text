@@ -10,7 +10,7 @@ export default function Message({
         className={`p-3 rounded-lg ${shouldFillWidth ? "" : "inline-block"} ${
           sender === "user"
             ? "ml-16 bg-blue-600 text-white"
-            : "mr-16 bg-gray-200 text-black"
+            : "bg-gray-200 text-black"
         } ${isSameSender ? "mt-2" : "mt-8"}`}
       >
         {children}

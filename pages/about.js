@@ -2,15 +2,17 @@ import Head from "next/head";
 import Link from "next/link";
 import { ArrowLeft as ArrowLeftIcon } from "lucide-react";
 
+import appName from "./index";
+
 export default function About() {
   return (
     <div>
       <Head>
-        <title>Paint with words</title>
+        <title>{appName}</title>
       </Head>
 
       <main className="container max-w-[600px] mx-auto p-5">
-        <h1 className="text-center text-5xl font-bold m-6">Paint with words</h1>
+        <h1 className="text-center text-5xl font-bold m-6">{appName}</h1>
 
         <p className="prose">
           This open-source website provides a simple interface for modifying

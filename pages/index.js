@@ -10,6 +10,9 @@ import { getRandomSeed } from "lib/seeds";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+export const appName = "Paint by Text";
+export const appSubtitle = "Use generative AI to modify images with words."
+
 export default function Home() {
   const [events, setEvents] = useState([]);
   const [predictions, setPredictions] = useState([]);
@@ -104,16 +107,14 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Paint with words</title>
+        <title>{appName}</title>
       </Head>
 
       <main className="container max-w-[700px] mx-auto p-5">
         <hgroup>
-          <h1 className="text-center text-5xl font-bold m-6">
-            Paint with words
-          </h1>
+          <h1 className="text-center text-5xl font-bold m-6">{appName}</h1>
           <p className="text-center text-xl opacity-60 m-6">
-            Use generative AI to manipulate images with text prompts.
+            {appSubtitle}
           </p>
         </hgroup>
 

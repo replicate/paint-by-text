@@ -9,11 +9,16 @@ Try it out at [paintbytext.chat](http://paintbytext.chat)
 This app is powered by:
 
 🚀 [Replicate](https://replicate.com/), a platform for running machine learning models in the cloud.
+
 🎨 [InstructPix2Pix](https://replicate.com/timothybrooks/instruct-pix2pix), an open-source machine learning model that generates images from text.
-▲ [Vercel](https://vercel.com/), a platform for running web apps
-⚡️ Next.js [server-side API routes](pages/api), for talking to the Replicate API
-👀 Next.js React components, for the browser UI
-🍃 [Tailwind CSS](https://tailwindcss.com/), for styles
+
+▲ [Vercel](https://vercel.com/), a platform for running web apps.
+
+⚡️ Next.js [server-side API routes](pages/api), for talking to the Replicate API.
+
+👀 Next.js React components, for the browser UI.
+
+🍃 [Tailwind CSS](https://tailwindcss.com/), for styles.
 
 
 ## Development
@@ -28,4 +33,4 @@ This app is powered by:
     npm install
     npm run dev
     ```
-1. Open [localhost:3000](http://localhost:3000) in your browser!
+1. Open [localhost:3000](http://localhost:3000) in your browser. That's it!

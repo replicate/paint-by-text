@@ -8,9 +8,9 @@ Try it out at [paintbytext.chat](http://paintbytext.chat)
 
 This app is powered by:
 
-🚀 [Replicate](https://replicate.com/), a platform for running machine learning models in the cloud.
+🚀 [Replicate](https://replicate.com/?utm_source=project&utm_campaign=paintbytext), a platform for running machine learning models in the cloud.
 
-🎨 [InstructPix2Pix](https://replicate.com/timothybrooks/instruct-pix2pix), an open-source machine learning model that generates images from text.
+🎨 [InstructPix2Pix](https://replicate.com/timothybrooks/instruct-pix2pix?utm_source=project&utm_campaign=paintbytext), an open-source machine learning model that generates images from text.
 
 ▲ [Vercel](https://vercel.com/), a platform for running web apps.
 
@@ -24,7 +24,7 @@ This app is powered by:
 ## Development
 
 1. Install a recent version of [Node.js](https://nodejs.org/)
-1. Copy your [Replicate API token](https://replicate.com/account) and set it in your environment:
+1. Copy your [Replicate API token](https://replicate.com/account?utm_source=project&utm_campaign=paintbytext) and set it in your environment:
     ```
     REPLICATE_API_TOKEN=<your-token-here>
     ````

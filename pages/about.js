@@ -28,7 +28,7 @@ export default function About() {
           </Link>
           , an open-source machine learning model that combines the knowledge
           from <Link href="https://openai.com/api/">GPT-3</Link> and{" "}
-          <Link href="https://replicate.com/stability-ai/stable-diffusion">
+          <Link href="https://replicate.com/stability-ai/stable-diffusion?utm_source=project&utm_campaign=paintbytext">
             Stable Diffusion
           </Link>{" "}
           to generate a large dataset of image editing examples. This model was
@@ -43,7 +43,7 @@ export default function About() {
 
         <p className="prose">
           The model is hosted on{" "}
-          <Link href="https://replicate.com/timothybrooks/instruct-pix2pix/api">
+          <Link href="https://replicate.com/timothybrooks/instruct-pix2pix/api?utm_source=project&utm_campaign=paintbytext">
             Replicate
           </Link>
           , which exposes a cloud API for running predictions. This website is

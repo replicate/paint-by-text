@@ -41,7 +41,7 @@ export default function About() {
 
         <p className="prose">
           The model is hosted on{" "}
-          <Link href="https://replicate.com/cjwbw/instruct-pix2pix/api">
+          <Link href="https://replicate.com/timothybrooks/instruct-pix2pix/api">
             Replicate
           </Link>
           , which exposes a cloud API for running predictions. This website is

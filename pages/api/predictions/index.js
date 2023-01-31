@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   );
 
   const body = JSON.stringify({
-    // https://replicate.com/cjwbw/instruct-pix2pix-diffuser/versions
+    // https://replicate.com/timothybrooks/instruct-pix2pix/versions
     version: "30c1d0b916a6f8efce20493f5d61ee27491ab2a60437c13c588468b9810ec23f",
     input: req.body,
   });

@@ -1,6 +1,6 @@
 # 👩‍🎨 Paint by Text
 
-Use generative AI to modify images with words.
+Modify images by chatting with a generative AI model.
 
 Try it out at [paintbytext.chat](http://paintbytext.chat)
 

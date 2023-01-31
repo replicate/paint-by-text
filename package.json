@@ -1,5 +1,6 @@
 {
   "name": "paint-by-text",
+  "description": "Modify images by chatting with a generative AI model.",
   "version": "1.0.0",
   "private": true,
   "scripts": {

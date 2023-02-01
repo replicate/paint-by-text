@@ -1,5 +1,7 @@
 const API_HOST = process.env.REPLICATE_API_HOST || "https://api.replicate.com";
 
+import packageData from "../../../package.json";
+
 export default async function handler(req, res) {
   // remnove null and undefined values
   req.body = Object.entries(req.body).reduce(
@@ -13,12 +15,15 @@ export default async function handler(req, res) {
     input: req.body,
   });
 
+  const headers = {
+    Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+    "Content-Type": "application/json",
+    "User-Agent": `${packageData.name}/${packageData.version}`
+  }
+
   const response = await fetch(`${API_HOST}/v1/predictions`, {
     method: "POST",
-    headers: {
-      Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-      "Content-Type": "application/json",
-    },
+    headers,
     body,
   });
 

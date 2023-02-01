@@ -26,7 +26,7 @@ This app is powered by:
 1. Install a recent version of [Node.js](https://nodejs.org/)
 1. Copy your [Replicate API token](https://replicate.com/account?utm_source=project&utm_campaign=paintbytext) and set it in your environment:
     ```
-    REPLICATE_API_TOKEN=<your-token-here>
+    echo "REPLICATE_API_TOKEN=<your-token-here>" > .env.local
     ````
 1. Install dependencies and run the server:
     ```

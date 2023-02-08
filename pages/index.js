@@ -110,6 +110,9 @@ export default function Home() {
       <Head>
         <title>{appName}</title>
         <meta name="description" content={appMetaDescription} />
+        <meta property="og:title" content={appName} />
+        <meta property="og:description" content={appMetaDescription} />
+        <meta property="og:image" content="https://paintbytext.chat/opengraph.jpg" />
       </Head>
 
       <main className="container max-w-[700px] mx-auto p-5">

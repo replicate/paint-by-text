@@ -28,8 +28,8 @@ export default function PromptForm({
       <Message sender="replicate" isSameSender>
         <label htmlFor="prompt-input">
           {isFirstPrompt
-            ? "What should we change?"
-            : "What should we change now?"}
+            ? "Please Paste the URL to the YouTube video into the prompt?"
+            : "What do you want to ask the video?"}
         </label>
       </Message>
 

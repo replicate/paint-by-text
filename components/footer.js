@@ -1,4 +1,3 @@
-import Dropzone from "components/dropzone";
 import {
   Code as CodeIcon,
   Download as DownloadIcon,
@@ -7,7 +6,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export default function Footer({ events, startOver, handleImageDropped }) {
+export default function Footer({ events, startOver }) {
   return (
     <footer className="w-full my-8">
       <div className="text-center">
@@ -24,8 +23,6 @@ export default function Footer({ events, startOver, handleImageDropped }) {
             Start over
           </button>
         )}
-
-        <Dropzone onImageDropped={handleImageDropped} />
 
         {events.length > 2 && (
           <Link href={events.findLast((ev) => ev.image).image}>

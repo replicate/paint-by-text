@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 
 import Footer from "components/footer";
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
 export const appName = "Paint by Text";
 export const appSubtitle =
   "Edit your photos using written instructions, with the help of an AI.";
@@ -18,46 +16,44 @@ export default function Home() {
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [initialPrompt, setInitialPrompt] = useState(
-    "https://www.youtube.com/watch?v=772WncdxCSw"
-  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const prompt = e.target.prompt.value;
+    console.log({ url: e.target.url.value, prompt });
 
     setError(null);
     setIsProcessing(true);
-    setInitialPrompt("");
 
     const myEvents = [...events, { prompt }];
     setEvents(myEvents);
 
-    const body = {
-      prompt,
-    };
+    // const body = {
+    //   prompt,
+    // };
 
-    const response = await fetch("/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    const prediction = await response.json();
+    // const response = await fetch("/api", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(body),
+    // });
+    // const prediction = await response.json();
 
-    if (response.status >= 400) {
-      setError(prediction.error);
-      return;
-    }
+    // if (response.status >= 400) {
+    //   setError(prediction.error);
+    //   return;
+    // }
 
-    // just for bookkeeping
-    setPredictions(predictions.concat([prediction]));
+    // // just for bookkeeping
+    // setPredictions(predictions.concat([prediction]));
 
-    if (prediction.status === "succeeded") {
-      console.log({ prediction });
-    }
+    // if (prediction.status === "succeeded") {
+    //   console.log({ prediction });
+    // }
+    setEvents([...myEvents, { answer: "test" }]);
 
     setIsProcessing(false);
   };
@@ -67,8 +63,9 @@ export default function Home() {
     setEvents(events.slice(0, 1));
     setError(null);
     setIsProcessing(false);
-    setInitialPrompt(seed.prompt);
   };
+
+  console.log({ events: events.length });
 
   return (
     <div>
@@ -93,7 +90,6 @@ export default function Home() {
           events={events}
           isProcessing={isProcessing}
           onUndo={(index) => {
-            setInitialPrompt(events[index - 1].prompt);
             setEvents(
               events.slice(0, index - 1).concat(events.slice(index + 1))
             );
@@ -101,7 +97,6 @@ export default function Home() {
         />
 
         <PromptForm
-          initialPrompt={initialPrompt}
           isFirstPrompt={events.length === 1}
           onSubmit={handleSubmit}
           disabled={isProcessing}

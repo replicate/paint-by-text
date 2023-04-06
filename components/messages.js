@@ -1,9 +1,8 @@
-import { RotateCcw as UndoIcon } from "lucide-react";
-import { Fragment, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import Message from "./message";
 
-export default function Messages({ events, isProcessing, onUndo }) {
+export default function Messages({ events, isProcessing }) {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -15,36 +14,13 @@ export default function Messages({ events, isProcessing, onUndo }) {
   return (
     <section className="w-full">
       {events.map((ev, index) => {
-        if (ev.image) {
+        if (ev.answer) {
           return (
-            <Fragment key={"image-" + index}>
-              <Message sender="replicate" shouldFillWidth>
-                {onUndo && index > 0 && index === events.length - 1 && (
-                  <div className="mt-2 text-right">
-                    <button
-                      className="lil-button"
-                      onClick={() => {
-                        onUndo(index);
-                      }}
-                    >
-                      <UndoIcon className="icon" /> Undo and try a different
-                      change
-                    </button>
-                  </div>
-                )}
-              </Message>
-
-              {(isProcessing || index < events.length - 1) && (
-                <Message sender="replicate" isSameSender>
-                  {index === 0
-                    ? "What should we change?"
-                    : "What should we change now?"}
-                </Message>
-              )}
-            </Fragment>
+            <Message key={"answer-" + index} sender="openAi">
+              {ev.answer}
+            </Message>
           );
         }
-
         if (ev.prompt) {
           return (
             <Message key={"prompt-" + index} sender="user">

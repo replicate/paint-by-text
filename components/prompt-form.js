@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
+import PromptInput from "components/prompt-input";
+import { useState } from "react";
 import Message from "./message";
 
 export default function PromptForm({
-  initialPrompt,
   isFirstPrompt,
   onSubmit,
   disabled = false,
 }) {
-  const [prompt, setPrompt] = useState(initialPrompt);
-
-  useEffect(() => {
-    setPrompt(initialPrompt);
-  }, [initialPrompt]);
+  const [prompt, setPrompt] = useState("");
+  const [url, setUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,36 +22,32 @@ export default function PromptForm({
 
   return (
     <form onSubmit={handleSubmit} className="animate-in fade-in duration-700">
-      <Message sender="replicate" isSameSender>
+      <Message sender="openai" isSameSender>
         <label htmlFor="prompt-input">
           {isFirstPrompt
-            ? "Please Paste the URL to the YouTube video into the prompt?"
-            : "What do you want to ask the video?"}
+            ? "Please Paste the URL to the YouTube video into the first input"
+            : "What do you want to ask the video now?"}
         </label>
       </Message>
 
       <div className="flex mt-8">
-        <input
-          id="prompt-input"
-          type="text"
-          name="prompt"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Your message..."
-          className={`block w-full flex-grow${
-            disabled ? " rounded-md" : " rounded-l-md"
-          }`}
-          disabled={disabled}
+        <PromptInput
+          value={url}
+          setValue={setUrl}
+          name="url"
+          type="url"
+          placeholder="https://www.youtube.com/watch?v=772WncdxCSw"
         />
-
-        {disabled || (
-          <button
-            className="bg-black text-white rounded-r-md text-small inline-block p-3 flex-none"
-            type="submit"
-          >
-            Paint
-          </button>
-        )}
+      </div>
+      <div className="flex mt-1">
+        <PromptInput
+          value={prompt}
+          setValue={setPrompt}
+          disabled={disabled}
+          buttonText={"send"}
+          name="prompt"
+          placeholder="Your message"
+        />
       </div>
     </form>
   );

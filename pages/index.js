@@ -13,7 +13,6 @@ export const appMetaDescription =
 
 export default function Home() {
   const [events, setEvents] = useState([]);
-  const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -21,7 +20,7 @@ export default function Home() {
     e.preventDefault();
 
     const prompt = e.target.prompt.value;
-    console.log({ url: e.target.url.value, prompt });
+    const url = e.target.url.value;
 
     setError(null);
     setIsProcessing(true);
@@ -29,31 +28,25 @@ export default function Home() {
     const myEvents = [...events, { prompt }];
     setEvents(myEvents);
 
-    // const body = {
-    //   prompt,
-    // };
+    const body = {
+      prompt,
+      url,
+    };
 
-    // const response = await fetch("/api", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(body),
-    // });
-    // const prediction = await response.json();
-
-    // if (response.status >= 400) {
-    //   setError(prediction.error);
-    //   return;
-    // }
-
-    // // just for bookkeeping
-    // setPredictions(predictions.concat([prediction]));
-
-    // if (prediction.status === "succeeded") {
-    //   console.log({ prediction });
-    // }
-    setEvents([...myEvents, { answer: "test" }]);
+    const response = await fetch("https://ask.florian42.repl.co/api/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    if (response.status >= 400) {
+      setError("There was an error fetching the answer");
+    }
+    if (response.status == 200) {
+      const { response: answer } = await response.json();
+      setEvents([...myEvents, { answer }]);
+    }
 
     setIsProcessing(false);
   };
@@ -64,8 +57,6 @@ export default function Home() {
     setError(null);
     setIsProcessing(false);
   };
-
-  console.log({ events: events.length });
 
   return (
     <div>

@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 
 import Footer from "components/footer";
 
-export const appName = "Paint by Text";
+export const appName = "Ask a YouTube Video";
 export const appSubtitle =
-  "Edit your photos using written instructions, with the help of an AI.";
+  "Ask ChatGPT questions about a specific YouTube Video.";
 export const appMetaDescription =
-  "Edit your photos using written instructions, with the help of an AI.";
+  "Ask ChatGPT questions about a specific YouTube Video.";
 
 export default function Home() {
   const [events, setEvents] = useState([]);
@@ -33,7 +33,7 @@ export default function Home() {
       url,
     };
 
-    const response = await fetch("https://ask.florian42.repl.co/api/ask", {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

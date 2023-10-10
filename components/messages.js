@@ -1,5 +1,5 @@
 import { RotateCcw as UndoIcon } from "lucide-react";
-import Image from "next/future/image";
+import Image from "next/image";
 import { Fragment, useEffect, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import Message from "./message";

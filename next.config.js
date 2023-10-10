@@ -22,11 +22,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },  
   async redirects() {
     return [
       {

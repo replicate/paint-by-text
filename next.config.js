@@ -3,17 +3,25 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: [
-      "replicate.com",
-      "replicate.delivery",
-      "user-images.githubusercontent.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "replicate.com",
+      },
+      {
+        protocol: "https",
+        hostname: "replicate.delivery",
+      },
+      {
+        protocol: "https",
+        hostname: "*.replicate.delivery",
+      },
+      {
+        protocol: "https",
+        hostname: "user-images.githubusercontent.com",
+      },
     ],
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },  
   async redirects() {
     return [
       {

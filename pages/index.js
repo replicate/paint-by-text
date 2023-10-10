@@ -63,7 +63,7 @@ export default function Home() {
       },
       body: JSON.stringify(body),
     });
-    const prediction = await response.json();
+    let prediction = await response.json();
 
     if (response.status !== 201) {
       setError(prediction.detail);

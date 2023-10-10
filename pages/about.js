@@ -58,11 +58,11 @@ export default function About() {
         </p>
 
         <div className="text-center mt-10">
-          <Link href="/">
-            <a className="bg-black text-white rounded-md text-small inline-block p-3 flex-none">
-              <ArrowLeftIcon className="icon" />
-              Back to painting
-            </a>
+          <Link
+            href="/"
+            className="bg-black text-white rounded-md text-small inline-block p-3 flex-none">
+
+            <ArrowLeftIcon className="icon" />Back to painting
           </Link>
         </div>
       </main>

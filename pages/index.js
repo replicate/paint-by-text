@@ -53,7 +53,7 @@ export default function Home() {
 
     const body = {
       prompt,
-      image: lastImage,
+      input_image: lastImage,
     };
 
     const response = await fetch("/api/predictions", {
@@ -88,7 +88,7 @@ export default function Home() {
       if (prediction.status === "succeeded") {
         setEvents(
           myEvents.concat([
-            { image: prediction.output?.[prediction.output.length - 1] },
+            { image: prediction.output },
           ])
         );
       }

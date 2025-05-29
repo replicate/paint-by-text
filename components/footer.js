@@ -37,7 +37,7 @@ export default function Footer({ events, startOver, handleImageDropped }) {
         )}
 
         <Link
-          href="https://github.com/replicate/instruct-pix2pix-demo"
+          href="https://github.com/replicate/paint-by-text"
           className="lil-button"
           target="_blank"
           rel="noopener noreferrer">
@@ -59,12 +59,12 @@ export default function Footer({ events, startOver, handleImageDropped }) {
 
       <div className="text-center lil-text mt-8">
         Powered by{" "}
-        <Link href="https://www.timothybrooks.com/instruct-pix2pix/" target="_blank">
-          InstructPix2Pix
+        <Link href="https://replicate.com/black-forest-labs/flux-kontext-pro" target="_blank">
+          Black Forest Labs
         </Link>
         ,{" "}
         <Link
-          href="https://replicate.com/timothybrooks/instruct-pix2pix?utm_source=project&utm_campaign=paintbytext"
+          href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=paintbytext"
           target="_blank">
           Replicate
         </Link>

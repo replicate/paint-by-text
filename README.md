@@ -10,7 +10,7 @@ This app is powered by:
 
 🚀 [Replicate](https://replicate.com/?utm_source=project&utm_campaign=paintbytext), a platform for running machine learning models in the cloud.
 
-🎨 [InstructPix2Pix](https://replicate.com/timothybrooks/instruct-pix2pix?utm_source=project&utm_campaign=paintbytext), an open-source machine learning model that generates images from text.
+🎨 [Kontext](https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=paintbytext), an open-source machine learning model that edits images using text.
 
 ▲ [Vercel](https://vercel.com/), a platform for running web apps.
 

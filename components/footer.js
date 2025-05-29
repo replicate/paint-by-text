@@ -59,12 +59,12 @@ export default function Footer({ events, startOver, handleImageDropped }) {
 
       <div className="text-center lil-text mt-8">
         Powered by{" "}
-        <Link href="https://replicate.com/black-forest-labs/flux-kontext-pro" target="_blank">
+        <Link href="https://replicate.com/black-forest-labs" target="_blank">
           Black Forest Labs
         </Link>
         ,{" "}
         <Link
-          href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=paintbytext"
+          href="https://replicate.com/blog/flux-kontext?utm_source=project&utm_campaign=paintbytext"
           target="_blank">
           Replicate
         </Link>
@@ -73,7 +73,7 @@ export default function Footer({ events, startOver, handleImageDropped }) {
           Vercel
         </Link>
         , and{" "}
-        <Link href="https://github.com/replicate/instruct-pix2pix-demo" target="_blank">
+        <Link href="https://github.com/replicate/paint-by-text" target="_blank">
           GitHub
         </Link>
       </div>

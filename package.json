@@ -19,7 +19,7 @@
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.2",
     "react-spinners": "^0.13.8",
-    "replicate": "^0.20.1"
+    "replicate": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",

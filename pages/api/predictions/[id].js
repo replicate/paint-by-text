@@ -1,9 +1,15 @@
 const API_HOST = process.env.REPLICATE_API_HOST || "https://api.replicate.com";
 
 export default async function handler(req, res) {
+  const token = req.headers["x-replicate-api-token"];
+  if (!token) {
+    res.statusCode = 401;
+    res.end(JSON.stringify({ detail: "Missing Replicate API token. Please provide your token in the x-replicate-api-token header." }));
+    return;
+  }
   const response = await fetch(`${API_HOST}/v1/predictions/${req.query.id}`, {
     headers: {
-      Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+      Authorization: `Token ${token}`,
       "Content-Type": "application/json",
     },
   });

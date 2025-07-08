@@ -21,13 +21,16 @@ This app is powered by:
 🍃 [Tailwind CSS](https://tailwindcss.com/), for styles.
 
 
+## Usage
+
+1. Open the app in your browser.
+1. When prompted, enter your [Replicate API token](https://replicate.com/account/api-tokens?new-token-name=paint-by-text-kontext).
+1. You can generate a free token at the link above (requires a Replicate account).
+1. Your token is stored securely in your browser and used only for your requests.
+
 ## Development
 
 1. Install a recent version of [Node.js](https://nodejs.org/)
-1. Copy your [Replicate API token](https://replicate.com/account?utm_source=project&utm_campaign=paintbytext) and set it in your environment:
-    ```
-    echo "REPLICATE_API_TOKEN=<your-token-here>" > .env.local
-    ````
 1. Install dependencies and run the server:
     ```
     npm install

@@ -67,14 +67,14 @@ export default function Home() {
   const [seed] = useState(getRandomSeed());
   const [initialPrompt, setInitialPrompt] = useState(seed.prompt);
   const [apiToken, setApiToken] = useState(null);
-  const [showTokenForm, setShowTokenForm] = useState(true);
+// Removed showTokenForm state
 
   // set the initial image from a random seed
   useEffect(() => {
     setEvents([{ image: seed.image }]);
     const storedToken = localStorage.getItem("replicateApiToken");
     if (storedToken) setApiToken(storedToken);
-    setShowTokenForm(true);
+    // Removed setShowTokenForm
   }, [seed.image]);
 
   const handleImageDropped = async (image) => {
@@ -161,13 +161,13 @@ export default function Home() {
 
   const handleTokenSet = (token) => {
     setApiToken(token);
-    setShowTokenForm(false);
+    // Removed setShowTokenForm
   };
 
   const handleLogout = () => {
     localStorage.removeItem("replicateApiToken");
     setApiToken(null);
-    setShowTokenForm(true);
+    // Removed setShowTokenForm
   };
 
   return (
@@ -180,8 +180,8 @@ export default function Home() {
         <meta property="og:image" content="https://paintbytext.chat/opengraph.jpg" />
       </Head>
 
-      <main className={`container max-w-[700px] mx-auto p-5 transition-filter duration-300 ${showTokenForm ? 'filter blur-sm brightness-75 pointer-events-none select-none' : ''}`}>
-        {showTokenForm ? null : (
+      <main className={`container max-w-[700px] mx-auto p-5 transition-filter duration-300 ${!apiToken ? 'filter blur-sm brightness-75 pointer-events-none select-none' : ''}`}>
+        {!apiToken ? null : (
           <>
             <div className="flex justify-end mb-4">
               <button className="text-sm underline text-blue-600" onClick={handleLogout}>
@@ -225,7 +225,7 @@ export default function Home() {
           </>
         )}
       </main>
-      {showTokenForm && <TokenModal onTokenSet={handleTokenSet} />}
+      {!apiToken && <TokenModal onTokenSet={handleTokenSet} />}
     </div>
   );
 }
